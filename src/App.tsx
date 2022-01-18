@@ -1,11 +1,14 @@
 import React from 'react'
 import './App.css'
 import Board from './Components/Board'
+import { GAME_SIZE } from './Constants/Sizes'
 
 function App() {
   return (
     <div className="App">
-      <Board />
+      <div style={{ width: GAME_SIZE, height: GAME_SIZE }}>
+        <Board />
+      </div>
     </div>
   )
 }
