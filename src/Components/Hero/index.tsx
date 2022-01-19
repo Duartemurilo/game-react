@@ -17,7 +17,7 @@ function Hero() {
     <div
       style={{
         position: 'absolute',
-        bottom: TILE_SIZE * heroPosition?.y,
+        top: TILE_SIZE * heroPosition?.y,
         left: TILE_SIZE * heroPosition?.x,
         width: TILE_SIZE + 3,
         height: TILE_SIZE + 35,

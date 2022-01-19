@@ -8,7 +8,7 @@ function Chest() {
     <div
       style={{
         position: 'absolute',
-        bottom: TILE_SIZE * 12,
+        top: TILE_SIZE * 12,
         left: TILE_SIZE * 6,
         width: TILE_SIZE + 8,
         height: TILE_SIZE + 10,

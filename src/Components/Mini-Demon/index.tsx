@@ -5,17 +5,17 @@ import { TILE_SIZE } from '../../Constants/Sizes'
 import useEnemyMoviment from '../../Hooks/enimyMoviment'
 import { EDirection } from '../../Constants/Edirections'
 
-function MiniDemon() {
-  const initialPosition = {
-    x: 10,
-    y: 5,
-  }
-  const { position, direction } = useEnemyMoviment(initialPosition)
+interface Iprops {
+  initialPosition: { x: number; y: number }
+}
+
+function MiniDemon(props: Iprops) {
+  const { position, direction } = useEnemyMoviment(props.initialPosition)
   return (
     <div
       style={{
         position: 'absolute',
-        bottom: TILE_SIZE * position?.y,
+        top: TILE_SIZE * position?.y,
         left: TILE_SIZE * position?.x,
         width: TILE_SIZE,
         height: TILE_SIZE + 24,
