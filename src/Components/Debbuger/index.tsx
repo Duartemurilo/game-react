@@ -1,21 +1,24 @@
-import React from 'react'
-import { canvasDebuger } from '../../Context/Canvas/helpers'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../AuthContext'
+
 import Tile from './Tile'
 
-function getCanvasMap() {
+function getCanvasMap(canvas) {
   const tilesArray = []
 
-  for (let y = 0; y < canvasDebuger.length; y++) {
-    const canvasY = canvasDebuger[y]
+  for (let y = 0; y < canvas.length; y++) {
+    const canvasY = canvas[y]
 
     for (let x = 0; x < canvasY.length; x++) {
       const canvasYX = canvasY[x]
 
       const position = { x: x, y: y }
 
-      const text = canvasDebuger[y][x] || canvasYX
+      const text = canvas[y][x] || canvasYX
 
-      tilesArray.push(<Tile position={position} text={text} />)
+      let key = `${x}-${y}`
+
+      tilesArray.push(<Tile key={key} position={position} text={text} />)
     }
   }
 
@@ -23,7 +26,10 @@ function getCanvasMap() {
 }
 
 function Debbuger() {
-  const tiles = getCanvasMap()
+  const canvasContext = useContext(AuthContext) as any
+
+  const tiles = getCanvasMap(canvasContext.canvasState.canvas)
+
   return <div>{tiles}</div>
 }
 

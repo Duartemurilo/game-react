@@ -1,5 +1,6 @@
 import React from 'react'
 import { TILE_SIZE } from '../../../Constants/Sizes'
+import { ECanva } from '../../../Context/Canvas/helpers'
 import './index.css'
 interface Iprops {
   position: { x: number; y: number }
@@ -9,10 +10,22 @@ interface Iprops {
 function Tile(props: Iprops) {
   const changeColor = () => {
     switch (props.text) {
-      case 0:
-        return 'blue'
-      case 1:
+      case ECanva.FLOOR:
+        return 'darkgrey'
+      case ECanva.WALL:
+        return 'yellow'
+      case ECanva.HERO:
+        return 'magenta'
+      case ECanva.DOOR:
+        return 'white'
+      case ECanva.DEMON:
         return 'red'
+      case ECanva.MINI_DEMON:
+        return 'red'
+      case ECanva.CHEST:
+        return 'cyan'
+      case ECanva.TRAP:
+        return 'charteuse'
     }
   }
 
@@ -28,6 +41,8 @@ function Tile(props: Iprops) {
         left: TILE_SIZE * props.position.x,
         color: color,
         border: `2px solid ${color}`,
+        fontSize: 20,
+        zIndex: 2,
       }}
     >
       {props.text}

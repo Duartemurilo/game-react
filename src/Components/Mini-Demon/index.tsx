@@ -15,14 +15,14 @@ function MiniDemon(props: Iprops) {
     <div
       style={{
         position: 'absolute',
-        top: TILE_SIZE * position?.y,
+        top: TILE_SIZE * position?.y - 20,
         left: TILE_SIZE * position?.x,
         width: TILE_SIZE,
-        height: TILE_SIZE + 24,
+        height: TILE_SIZE * 1.5,
         backgroundImage: `url(${MiniDemonImage})`,
         backgroundRepeat: 'no-repeat',
         animation: 'mini-demon-animation  1s steps(4) infinite',
-        backgroundPosition: ` 0 -${TILE_SIZE - 2}px`,
+        backgroundPosition: ` 0 -${TILE_SIZE}px`,
         transform: `scaleX(${direction === EDirection.RIGHT ? 1 : -1})`,
       }}
     ></div>

@@ -3,13 +3,17 @@ import './index.css'
 import TrapImage from '../../Assets/TRAP.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
 
-function Trap() {
+interface Iprops {
+  initialPosition: { x: number; y: number }
+}
+
+function Trap(props: Iprops) {
   return (
     <div
       style={{
         position: 'absolute',
-        top: TILE_SIZE * 10,
-        left: TILE_SIZE * 15,
+        top: TILE_SIZE * props.initialPosition.y,
+        left: TILE_SIZE * props.initialPosition.x,
         width: TILE_SIZE,
         height: TILE_SIZE + 12,
         backgroundImage: `url(${TrapImage})`,

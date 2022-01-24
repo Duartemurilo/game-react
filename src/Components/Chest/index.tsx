@@ -3,13 +3,17 @@ import './index.css'
 import ChestImage from '../../Assets/CHEST.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
 
-function Chest() {
+interface Iprops {
+  initialPosition: { x: number; y: number }
+}
+
+function Chest(props: Iprops) {
   return (
     <div
       style={{
         position: 'absolute',
-        top: TILE_SIZE * 12,
-        left: TILE_SIZE * 6,
+        top: TILE_SIZE * props.initialPosition.y,
+        left: TILE_SIZE * props.initialPosition.x,
         width: TILE_SIZE + 8,
         height: TILE_SIZE + 10,
         backgroundImage: `url(${ChestImage})`,
