@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import BoardImage from '../../Assets/tileset.gif'
 import { GAME_SIZE } from '../../Constants/Sizes'
 import { canvasDebuger, ECanva } from '../../Context/Canvas/helpers'
-import Chest from '../Chest'
-import Demon from '../Demon'
-import Hero from '../Hero'
+import Chest from '../Chest/Chest'
+import Demon from '../Demon/Demon'
+import Hero from '../Hero/Hero'
 import MiniDemon from '../Mini-Demon'
 import Trap from '../Trap'
+import DoorOpen from '../../Assets/DOOR-OPEN.png'
+import { ChestContext } from '../../Context/Chest/ChestContext'
+import './index.css'
 
 function getCanvasMap() {
   const array = []
@@ -44,13 +47,20 @@ function getCanvasMap() {
   return array
 }
 
-const elements = getCanvasMap()
 function Board() {
-  return (
-    <div style={{ position: 'relative' }}>
-      {elements}
+  const chestContext = useContext(ChestContext) as any
+  const elements = getCanvasMap()
 
-      <img style={{ width: GAME_SIZE, height: GAME_SIZE }} src={BoardImage} alt="board" />
+  return (
+    <div className="Board">
+      <div style={{ position: 'relative', width: GAME_SIZE, height: GAME_SIZE }}>
+        {chestContext.chestState.totalChest === chestContext.chestState.openChest.total && (
+          <img src={DoorOpen} alt="porta aberta" style={{ position: 'absolute', left: 446, width: 153, top: 0 }} />
+        )}
+
+        {elements}
+        <img style={{ width: GAME_SIZE, height: GAME_SIZE }} src={BoardImage} alt="board" />
+      </div>
     </div>
   )
 }

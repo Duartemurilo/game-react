@@ -34,6 +34,8 @@ function Tile(props: Iprops) {
     <div
       className="Tile"
       style={{
+        marginTop: '24vh',
+        marginLeft: '24vw',
         width: TILE_SIZE,
         height: TILE_SIZE,
         position: 'absolute',

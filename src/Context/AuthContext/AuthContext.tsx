@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { canvasDebuger, checkMoviment, ECanva, handleNextPosition } from './Context/Canvas/helpers'
+import { canvasDebuger, checkMoviment, ECanva, handleNextPosition } from '../Canvas/helpers'
 
 interface Iprops {
   children: React.ReactNode

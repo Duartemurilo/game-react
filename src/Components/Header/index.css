@@ -1,0 +1,60 @@
+.ContainerHeader {
+  display: flex;
+  align-items: flex-end;
+  padding-left: 20px;
+  height: 8vh;
+  border-bottom: 2px solid white;
+  color: white;
+  padding-bottom: 7px;
+  width: 50%;
+  font-size: 30px;
+  margin-top: 10vh;
+  justify-content: space-between;
+}
+
+.ContainerButton {
+  display: flex;
+  gap: 2vw;
+}
+
+P {
+  text-transform: uppercase;
+  margin: 0;
+  margin-right: 7px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  min-width: 100px;
+  color: white;
+  border: 1px solid white;
+  gap: 7px;
+  cursor: pointer;
+  background: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 3px;
+  height: 40px;
+}
+button:hover {
+  background-color: white;
+  color: black;
+}
+
+select {
+  background: none;
+  border: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: white;
+  height: 100%;
+  width: 60%;
+  outline: 0;
+}
+
+select:hover {
+  color: black;
+}

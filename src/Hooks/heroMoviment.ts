@@ -1,5 +1,5 @@
-import { ChestContext } from './../Context/Chest/index'
-import { AuthContext } from './../AuthContext'
+import { ChestContext } from '../Context/Chest/ChestContext'
+import { AuthContext } from '../Context/AuthContext/AuthContext'
 import { useContext, useState } from 'react'
 import useEventListener from '@use-it/event-listener'
 import { EDirection } from '../Constants/Edirections'
@@ -21,7 +21,12 @@ function useHeroMoviment(initialPosition: any) {
     const moviment = canvasContext.canvasState.uptadecanvas(direction, heroPosition, Echaracter.HERO)
 
     if (moviment.isValidMoviment.dead) {
-      console.log('Voce morreu')
+      const elemento = document.getElementById('elemento')
+      if (elemento.classList) elemento.classList.add('dead')
+      setTimeout(() => {
+        alert('Você morreu')
+        window.location.reload()
+      }, 100)
     }
     if (moviment.isValidMoviment.valid) {
       setHeroPosition(moviment.nextMove)
@@ -29,7 +34,15 @@ function useHeroMoviment(initialPosition: any) {
     }
 
     if (moviment.isValidMoviment.chest) {
-      chestContext.chestState.uptadeChest()
+      chestContext.chestState.uptadeChest(moviment.nextMove)
+    }
+
+    if (
+      chestContext.chestState.totalChest === chestContext.chestState.openChest.total &&
+      moviment.isValidMoviment.door
+    ) {
+      alert('voce venceu ')
+      window.location.reload()
     }
   })
 

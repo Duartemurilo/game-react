@@ -27,6 +27,7 @@ export enum ECanva {
   CHEST = 6,
   HERO = 7,
   NOTHIN = 8,
+  W2 = 9,
 }
 
 const FL = ECanva.FLOOR
@@ -37,27 +38,38 @@ const MD = ECanva.MINI_DEMON
 const DM = ECanva.DEMON
 const CH = ECanva.CHEST
 const HE = ECanva.HERO
+const W2 = ECanva.W2
+
+window.addEventListener(
+  'keydown',
+  function (e) {
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault()
+    }
+  },
+  false
+)
 
 export const canvasDebuger = [
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
-  [WL, FL, FL, WL, FL, FL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, WL, FL, CH, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, WL, WL],
+  [WL, CH, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, WL],
+  [WL, FL, FL, FL, FL, MD, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, WL],
-  [WL, FL, FL, FL, FL, CH, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, CH, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, WL],
-  [WL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, HE, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, DM, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, FL, CH, FL, FL, FL, WL],
+  [WL, FL, HE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
 ]
 
@@ -75,7 +87,8 @@ export const getHeroValidMoviment = (canvasValue: number) => {
       canvasValue === ECanva.FLOOR ||
       canvasValue === ECanva.DEMON ||
       canvasValue === ECanva.MINI_DEMON ||
-      canvasValue === ECanva.CHEST,
+      canvasValue === ECanva.TRAP ||
+      canvasValue === ECanva.W2,
     dead: canvasValue === ECanva.TRAP || canvasValue === ECanva.DEMON || canvasValue === ECanva.MINI_DEMON,
     chest: canvasValue === ECanva.CHEST,
     door: canvasValue === ECanva.DOOR,
@@ -85,7 +98,7 @@ export const getHeroValidMoviment = (canvasValue: number) => {
 export const getEnemyValidMoviment = (canvasValue: number) => {
   return {
     valid: canvasValue === ECanva.FLOOR || canvasValue === ECanva.HERO,
-    dead: canvasValue === ECanva.NOTHIN,
+    dead: canvasValue === ECanva.HERO,
     chest: canvasValue === ECanva.NOTHIN,
     door: canvasValue === ECanva.NOTHIN,
   }

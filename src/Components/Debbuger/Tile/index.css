@@ -1,6 +1,8 @@
 .Tile {
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 0;
   align-items: center;
-  font-size: 30;
+  font-size: 20;
 }

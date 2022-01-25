@@ -4,22 +4,32 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 90vw;
+  overflow-x: hidden;
+}
+
+.App {
+  height: 200vh;
+}
+.Game {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  align-items: center;
+  height: 130vh;
+  width: 100vw;
+  background-color: rgba(82, 182, 196, 1);
+
+  font-family: 'Poiret One', cursive;
 }
 
 * {
   padding: 0px;
+  font-family: 'Poiret One', cursive;
 }
 
-.App {
-  min-width: 90vw;
-  overflow-x: hidden;
-  height: 100vh;
-  overflow-y: hidden;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
+.dead {
+  background: linear-gradient(315deg, rgba(255, 92, 92, 1) 7%, rgba(196, 82, 134, 1) 87%);
 }
 
 code {

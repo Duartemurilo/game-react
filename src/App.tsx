@@ -1,18 +1,21 @@
 import React from 'react'
-import './App.css'
-import Board from './Components/Board'
-import Debbuger from './Components/Debbuger'
+import Footer from './Components/Footer/Footer'
+import Game from './Components/Game/Game'
+import HowToPlay from './Components/HowToPlay/ HowToPlay'
 import { GAME_SIZE } from './Constants/Sizes'
-import { ChestProvider } from './Context/Chest'
 
 function App() {
   return (
     <div className="App">
-      <div style={{ position: 'relative', width: GAME_SIZE, height: GAME_SIZE }}>
-        <ChestProvider>
-          <Board />
-          <Debbuger />
-        </ChestProvider>
+      <div
+        style={{
+          position: 'relative',
+          width: GAME_SIZE,
+        }}
+      >
+        <Game />
+        <HowToPlay />
+        <Footer />
       </div>
     </div>
   )

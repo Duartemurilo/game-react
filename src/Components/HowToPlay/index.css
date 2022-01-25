@@ -1,0 +1,19 @@
+.ContainerHowToPlay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 24vw;
+  height: 60vh;
+  margin-top: 5vw;
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ContainerHowToPlay h1 {
+  text-align: center;
+  margin-top: 10vh;
+}
+.ContainerHowToPlay p {
+  font-size: 20px;
+}

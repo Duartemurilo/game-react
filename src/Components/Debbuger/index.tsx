@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../AuthContext'
+import { AuthContext } from '../../Context/AuthContext/AuthContext'
 
-import Tile from './Tile'
+import Tile from './Tile/Debbuger'
 
 function getCanvasMap(canvas) {
   const tilesArray = []
@@ -30,7 +30,7 @@ function Debbuger() {
 
   const tiles = getCanvasMap(canvasContext.canvasState.canvas)
 
-  return <div>{tiles}</div>
+  return <>{tiles}</>
 }
 
 export default Debbuger
