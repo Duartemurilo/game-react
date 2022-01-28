@@ -4,10 +4,7 @@ import MiniDemonImage from '../../Assets/MINI-DEMON.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
 import useEnemyMoviment from '../../Hooks/enimyMoviment'
 import { EDirection } from '../../Constants/Edirections'
-
-interface Iprops {
-  initialPosition: { x: number; y: number }
-}
+import { Iprops } from '../../Constants/interface'
 
 function MiniDemon(props: Iprops) {
   const { position, direction } = useEnemyMoviment(props.initialPosition)

@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
+import { IpropsContext } from '../../Constants/interfaceContext'
 import { canvasDebuger, checkMoviment, ECanva, handleNextPosition } from '../Canvas/helpers'
 
-interface Iprops {
-  children: React.ReactNode
-}
 export const AuthContext = React.createContext({
   canva: [],
-  uptadecanvas: (direction: number, postion: number, walker: string) => null,
+  uptadecanvas: (direction: number, postion: number, walker: string, step?: number) => null,
 })
 
-export const AuthProvider = (props: Iprops) => {
+export const AuthProvider = (props: IpropsContext) => {
   const [canvasState, setCanvas] = useState({
     canvas: canvasDebuger,
-    uptadecanvas: (direction: number, postion: any, walker: string) => {
+    uptadecanvas: (direction: number, postion: any, walker: string, step?: number) => {
       const nextMove = handleNextPosition(direction, postion)
-      const isValidMoviment = checkMoviment(nextMove, walker)
+      const isValidMoviment = checkMoviment(nextMove, walker, step)
 
       if (isValidMoviment.valid) {
         setCanvas((prevState): any => {

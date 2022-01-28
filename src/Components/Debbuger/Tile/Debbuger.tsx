@@ -1,11 +1,8 @@
 import React from 'react'
+import { Iprops } from '../../../Constants/interface'
 import { TILE_SIZE } from '../../../Constants/Sizes'
 import { ECanva } from '../../../Context/Canvas/helpers'
 import './index.css'
-interface Iprops {
-  position: { x: number; y: number }
-  text: number
-}
 
 function Tile(props: Iprops) {
   const changeColor = () => {

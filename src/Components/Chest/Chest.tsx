@@ -3,10 +3,7 @@ import './index.css'
 import ChestImage from '../../Assets/CHEST.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
 import { ChestContext } from '../../Context/Chest/ChestContext'
-
-interface Iprops {
-  initialPosition: { x: number; y: number }
-}
+import { Iprops } from '../../Constants/interface'
 
 function Chest(props: Iprops) {
   const chestContext = useContext(ChestContext) as any

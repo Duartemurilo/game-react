@@ -4,9 +4,8 @@ import DemonImage from '../../Assets/DEMON.png'
 import { DEMON_TILE_SIZE, TILE_SIZE } from '../../Constants/Sizes'
 import useEnemyMoviment from '../../Hooks/enimyMoviment'
 import { EDirection } from '../../Constants/Edirections'
-interface Iprops {
-  initialPosition: { x: number; y: number }
-}
+import { Iprops } from '../../Constants/interface'
+
 function Demon(props: Iprops) {
   const { position, direction } = useEnemyMoviment(props.initialPosition)
 

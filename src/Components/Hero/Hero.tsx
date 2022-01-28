@@ -4,10 +4,7 @@ import HeroImage from '../../Assets/HERO.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
 import useHeroMoviment from '../../Hooks/heroMoviment'
 import { EDirection } from '../../Constants/Edirections'
-
-interface Iprops {
-  initialPosition: { x: number; y: number }
-}
+import { Iprops } from '../../Constants/interface'
 
 function Hero(props: Iprops) {
   const { heroPosition, direction } = useHeroMoviment(props.initialPosition)

@@ -54,34 +54,35 @@ export const canvasDebuger = [
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, DR, DR, WL, WL, WL, WL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, WL, WL],
-  [WL, CH, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, CH, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, WL],
-  [WL, FL, FL, FL, FL, MD, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, MD, FL, FL, FL, FL, TR, FL, FL, DM, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, CH, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, CH, FL, FL, FL, MD, FL, TR, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, DM, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, DM, FL, FL, FL, FL, FL, CH, FL, FL, FL, WL],
-  [WL, FL, HE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, HE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, W2, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
 ]
 
-export const checkMoviment = (nexPosition: any, character: string) => {
+export const checkMoviment = (nexPosition: any, character: string, step?: number) => {
   const canvasValue = canvasDebuger[nexPosition.y][nexPosition.x]
 
-  let result = character === Echaracter.HERO ? getHeroValidMoviment(canvasValue) : getEnemyValidMoviment(canvasValue)
+  let result =
+    character === Echaracter.HERO ? getHeroValidMoviment(canvasValue, step) : getEnemyValidMoviment(canvasValue)
 
   return result
 }
 
-export const getHeroValidMoviment = (canvasValue: number) => {
+export const getHeroValidMoviment = (canvasValue: number, steps?: number) => {
   return {
     valid:
       canvasValue === ECanva.FLOOR ||
@@ -89,7 +90,8 @@ export const getHeroValidMoviment = (canvasValue: number) => {
       canvasValue === ECanva.MINI_DEMON ||
       canvasValue === ECanva.TRAP ||
       canvasValue === ECanva.W2,
-    dead: canvasValue === ECanva.TRAP || canvasValue === ECanva.DEMON || canvasValue === ECanva.MINI_DEMON,
+    dead:
+      canvasValue === ECanva.TRAP || canvasValue === ECanva.DEMON || canvasValue === ECanva.MINI_DEMON || steps <= 0,
     chest: canvasValue === ECanva.CHEST,
     door: canvasValue === ECanva.DOOR,
   }

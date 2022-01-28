@@ -2,10 +2,7 @@ import React from 'react'
 import './index.css'
 import TrapImage from '../../Assets/TRAP.png'
 import { TILE_SIZE } from '../../Constants/Sizes'
-
-interface Iprops {
-  initialPosition: { x: number; y: number }
-}
+import { Iprops } from '../../Constants/interface'
 
 function Trap(props: Iprops) {
   return (

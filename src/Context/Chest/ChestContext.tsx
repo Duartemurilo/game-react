@@ -1,12 +1,8 @@
 import { createContext, useState } from 'react'
-import { canvasDebuger, ECanva } from '../Canvas/helpers'
-
-interface IProps {
-  children: React.ReactNode
-}
+import { IpropsContext } from '../../Constants/interfaceContext'
 
 export const ChestContext = createContext({
-  totalChest: 2,
+  totalChest: 3,
   openChest: {
     total: 0,
     position: [],
@@ -14,17 +10,9 @@ export const ChestContext = createContext({
   uptadeChest: (position) => null,
 })
 
-let totalchest = 0
+let totalchest = 3
 
-canvasDebuger.forEach((item) => {
-  item.forEach((item) => {
-    if (item === ECanva.CHEST) {
-      return totalchest++
-    }
-  })
-})
-
-export function ChestProvider(props: IProps) {
+export function ChestProvider(props: IpropsContext) {
   const [chestState, setChest] = useState({
     totalChest: totalchest,
     openChest: {
@@ -40,6 +28,7 @@ export function ChestProvider(props: IProps) {
             total: prevState.openChest.total + 1,
             position: prevState.openChest.position.concat(position),
           },
+
           uptadeChest: prevState.uptadeChest,
         }
       })

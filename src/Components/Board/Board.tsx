@@ -57,7 +57,6 @@ function Board() {
         {chestContext.chestState.totalChest === chestContext.chestState.openChest.total && (
           <img src={DoorOpen} alt="porta aberta" style={{ position: 'absolute', left: 446, width: 153, top: 0 }} />
         )}
-
         {elements}
         <img style={{ width: GAME_SIZE, height: GAME_SIZE }} src={BoardImage} alt="board" />
       </div>

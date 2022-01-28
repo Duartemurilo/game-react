@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
+import { IpropsContext } from '../../Constants/interfaceContext'
 
-interface Iprops {
-  children: React.ReactNode
-}
 export const DifficultyContext = React.createContext({
-  difficultyState: 0,
-  setdifficultyState: () => null,
+  difficulty: 0,
+  updatedifficulty: () => null,
 })
 
-export const DifficultyProvider = (props: Iprops) => {
-  const [difficultyState, setdifficultyState] = useState({})
+let difficulty = 0
 
-  return (
-    <DifficultyContext.Provider value={{ difficultyState, setdifficultyState }}>
-      {props.children}
-    </DifficultyContext.Provider>
-  )
+export const DifficultyProvider = (props: IpropsContext) => {
+  const [difficultyState, setDifficultyState] = useState({
+    difficulty: difficulty,
+    updatedifficulty: (level) => {
+      setDifficultyState((prevState): any => {
+        return { difficulty: prevState.difficulty + 1, updatedifficulty: prevState.updatedifficulty }
+      })
+    },
+  })
+
+  return <DifficultyContext.Provider value={{ difficultyState }}>{props.children}</DifficultyContext.Provider>
 }

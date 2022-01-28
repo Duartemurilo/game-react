@@ -4,8 +4,24 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 90vw;
+  min-width: 100vw;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 2px;
+}
+
+/* aqui é para personalizar o fundo da barra, neste caso estou colocando um fundo cinza escuro*/
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+/* aqui é a alça da barra, que demonstra a altura que você está na página
+  estou colocando uma cor azul clara nela*/
+::-webkit-scrollbar-thumb {
+  background: white;
 }
 
 .App {
@@ -19,7 +35,6 @@ body {
   height: 130vh;
   width: 100vw;
   background-color: rgba(82, 182, 196, 1);
-
   font-family: 'Poiret One', cursive;
 }
 
