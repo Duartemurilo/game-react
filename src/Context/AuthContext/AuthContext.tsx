@@ -18,7 +18,6 @@ export const AuthProvider = (props: IpropsContext) => {
         setCanvas((prevState): any => {
           const newcanvas: object = [...prevState.canvas]
           const currentValue = newcanvas[postion.y][postion.x]
-
           newcanvas[postion.y][postion.x] = ECanva.FLOOR
           newcanvas[nextMove.y][nextMove.x] = currentValue
 

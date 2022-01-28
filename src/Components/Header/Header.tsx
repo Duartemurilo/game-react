@@ -8,9 +8,11 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import MusicOffIcon from '@mui/icons-material/MusicOff'
 import { StepsContext } from '../../Context/StepsContext/StepsContext'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
+import { RenderContext } from '../../Context/RenderLevelContext/RenderLevelContext'
 
 function Header(props: IPropsHeader) {
   const stepsContext = useContext(StepsContext) as any
+  const renderLevelContext = useContext(RenderContext) as any
 
   const [playmusic, setplayMusic] = useState(false)
 
@@ -38,14 +40,16 @@ function Header(props: IPropsHeader) {
           <p>{stepsContext.stepsState.totalSteps} passos</p>
         </button>
 
-        <button>
-          <TimelineIcon style={{ fontSize: 30, right: 0 }} />
-          <select onChange={handleDifficulty}>
-            <option value={0}>Iniciante</option>
-            <option value={1}>Intermediario</option>
-            <option value={2}>Dificil</option>
-          </select>
-        </button>
+        {renderLevelContext.renderLevelState.renderLevel && (
+          <button>
+            <TimelineIcon style={{ fontSize: 30, right: 0 }} />
+            <select onChange={handleDifficulty}>
+              <option value={0}>Iniciante</option>
+              <option value={1}>Intermediario</option>
+              <option value={2}>Dificil</option>
+            </select>
+          </button>
+        )}
 
         <button onClick={() => props.currentDebugger(!props.debbuger)}>
           <SettingsIcon style={{ fontSize: 30, cursor: 'pointer', right: 0 }} />

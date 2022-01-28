@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ChestProvider } from '../../Context/Chest/ChestContext'
+import { RenderProvider } from '../../Context/RenderLevelContext/RenderLevelContext'
 import { StepsProvider } from '../../Context/StepsContext/StepsContext'
 
 import Board from '../Board/Board'
@@ -13,9 +14,11 @@ function Game() {
     <div className="Game" id="elemento">
       <StepsProvider>
         <ChestProvider>
-          <Header currentDebugger={setDebbuger} debbuger={debbuger} />
-          <Board />
-          {!!debbuger && <Debbuger />}
+          <RenderProvider>
+            <Header currentDebugger={setDebbuger} debbuger={debbuger} />
+            <Board />
+            {!!debbuger && <Debbuger />}
+          </RenderProvider>
         </ChestProvider>
       </StepsProvider>
     </div>

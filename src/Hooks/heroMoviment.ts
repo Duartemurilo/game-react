@@ -1,3 +1,4 @@
+import { RenderContext } from './../Context/RenderLevelContext/RenderLevelContext'
 import { sfx } from './../Music/Music'
 import { ChestContext } from '../Context/Chest/ChestContext'
 import { AuthContext } from '../Context/AuthContext/AuthContext'
@@ -14,15 +15,18 @@ function useHeroMoviment(initialPosition: any) {
   const canvasContext = useContext(AuthContext) as any
   const chestContext = useContext(ChestContext) as any
   const stepsContext = useContext(StepsContext) as any
+  const renderLevelContext = useContext(RenderContext) as any
 
   const step = stepsContext.stepsState.totalSteps
 
   useEventListener('keydown', (event: any) => {
     const direction = event.key
 
-    if (direction.indexOf('Arrow')) {
-      return
-    }
+    console.log(direction)
+
+    // if (direction.indexOf('Arrow')) {
+    //   return
+    // }
 
     const moviment = canvasContext.canvasState.uptadecanvas(direction, heroPosition, Echaracter.HERO, step)
 
@@ -48,6 +52,7 @@ function useHeroMoviment(initialPosition: any) {
       setDirection(direction)
 
       stepsContext.stepsState.updateSteps()
+      renderLevelContext.renderLevelState.updateRenderLevel()
     }
 
     if (moviment.isValidMoviment.chest) {

@@ -1,3 +1,4 @@
+import { EDirection2 } from './../../Constants/Edirections'
 import { Echaracter } from '../../Constants/character'
 import { EDirection } from '../../Constants/Edirections'
 
@@ -13,6 +14,18 @@ export function handleNextPosition(direction: any, position: any) {
       return { x: position.x, y: position.y - 1 }
 
     case EDirection.DOWN:
+      return { x: position.x, y: position.y + 1 }
+
+    case EDirection2.LEFT:
+      return { x: position.x - 1, y: position.y }
+
+    case EDirection2.RIGHT:
+      return { x: position.x + 1, y: position.y }
+
+    case EDirection2.UP:
+      return { x: position.x, y: position.y - 1 }
+
+    case EDirection2.DOWN:
       return { x: position.x, y: position.y + 1 }
   }
 }

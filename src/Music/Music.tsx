@@ -3,9 +3,11 @@ import { Howl } from 'howler'
 export var sfx = {
   push: new Howl({
     src: ['https://assets.codepen.io/21542/howler-sfx-levelup.mp3'],
+    volume: 0.03,
   }),
   openDoor: new Howl({
     src: ['https://assets.codepen.io/21542/howler-push.mp3'],
+    volume: 0.03,
   }),
   moster: new Howl({
     src: [
@@ -16,5 +18,7 @@ export var sfx = {
 export var music = {
   overworld: new Howl({
     src: ['https://assets.codepen.io/21542/howler-demo-bg-music.mp3'],
+    loop: true,
+    volume: 0.03,
   }),
 }

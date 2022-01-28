@@ -5,8 +5,6 @@ import HowToPlay from './Components/HowToPlay/ HowToPlay'
 import { GAME_SIZE } from './Constants/Sizes'
 
 function App() {
-  // music?.overworld.play()
-
   return (
     <div className="App">
       <div
