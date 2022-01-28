@@ -54,7 +54,7 @@ function Board() {
   return (
     <div className="Board">
       <div style={{ position: 'relative', width: GAME_SIZE, height: GAME_SIZE }}>
-        {chestContext.chestState.totalChest === chestContext.chestState.openChest.total && (
+        {chestContext.chestState.totalChest <= chestContext.chestState.openChest.total && (
           <img src={DoorOpen} alt="porta aberta" style={{ position: 'absolute', left: 446, width: 153, top: 0 }} />
         )}
         {elements}

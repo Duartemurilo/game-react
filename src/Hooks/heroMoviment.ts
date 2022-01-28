@@ -6,6 +6,7 @@ import useEventListener from '@use-it/event-listener'
 import { EDirection } from '../Constants/Edirections'
 import { Echaracter } from '../Constants/character'
 import { StepsContext } from '../Context/StepsContext/StepsContext'
+import Swal from 'sweetalert2'
 
 function useHeroMoviment(initialPosition: any) {
   const [heroPosition, setHeroPosition] = useState(initialPosition)
@@ -31,16 +32,22 @@ function useHeroMoviment(initialPosition: any) {
       if (elemento.classList) elemento.classList.add('dead')
       sfx.moster.play()
       setTimeout(() => {
-        alert('Você morreu')
-        window.location.reload()
+        Swal.fire({
+          icon: 'error',
+          title: 'VOCÊ MORREU...',
+          text: 'TENTE DE NOVO',
+        })
       }, 100)
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     }
 
     if (moviment.isValidMoviment.valid) {
       setHeroPosition(moviment.nextMove)
       setDirection(direction)
 
-      stepsContext.stepsState.updateSteps(10)
+      stepsContext.stepsState.updateSteps()
     }
 
     if (moviment.isValidMoviment.chest) {
@@ -52,9 +59,17 @@ function useHeroMoviment(initialPosition: any) {
       chestContext.chestState.totalChest === chestContext.chestState.openChest.total &&
       moviment.isValidMoviment.door
     ) {
-      alert('voce venceu ')
-      window.location.reload()
       sfx.openDoor.play()
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'VITÓRIA',
+          text: 'VOCÊ VENCEU',
+        })
+      }, 100)
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     }
   })
 
